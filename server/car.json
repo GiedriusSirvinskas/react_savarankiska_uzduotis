@@ -10,13 +10,7 @@
       "Acceleration": 8.5,
       "Year": "1970-01-01",
       "Origin": "USA",
-      "id": 1,
-      "tenant": {
-        "firstName": "aaa",
-        "lastName": "aaa",
-        "rentTime": 123,
-        "bankCardNumber": 123
-      }
+      "id": 1
     },
     {
       "Name": "citroen ds-21 pallas",

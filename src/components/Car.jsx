@@ -2,13 +2,19 @@ import { Container } from "react-bootstrap";
 import { Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { TbListDetails } from "react-icons/tb";
-import { useState } from "react";
-
+import { useState, useEffect } from "react";
+import axios from "axios";
+let baseURL = "http://localhost:3000/cars/";
 function Car({ car }) {
-  let [rented, setRented] = useState();
+  let [rented, setRented] = useState(false);
   let buttonHandler = () => {
-    setRented((currentState) => !currentState);
+    delete car.tenant;
+    axios.put(baseURL + car.id, car).then(response => console.log(response.data))
+    setRented(false)
   };
+  useEffect(()=> {
+    if (car.tenant) setRented(true)
+  }, [car.tenant])
 
   return (
     <tr className={rented ? "rentedOn" : "rentedOff"}>
@@ -24,16 +30,14 @@ function Car({ car }) {
         </Link>
       </td>
       <td>
-        <Link to={"/rent/" + car.id}>
           {rented && (
-            <Button variant="success" onClick={() => buttonHandler()}>
+            <Button variant="success" onClick={()=> buttonHandler()}>
               Returned
             </Button>
           )}
-        </Link>
         <Link to={"/rent/" + car.id}>
           {!rented && (
-            <Button variant="info" onClick={() => buttonHandler()}>
+            <Button variant="info">
               Rent
             </Button>
           )}

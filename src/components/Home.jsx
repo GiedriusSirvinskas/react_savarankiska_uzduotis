@@ -2,6 +2,7 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import { Table } from "react-bootstrap";
 import Car from "./Car";
+import Filter from "./Filter";
 
 let baseURL = "http://localhost:3000/cars/";
 
@@ -20,6 +21,7 @@ function Home() {
 
   return (
     <div>
+      <Filter cars={carList} setCarList={setCarList}/>
       <Table striped bordered hover>
         <thead>
           <tr>
