@@ -1,0 +1,50 @@
+.navbar-nav {
+  gap: 10px;
+  a {
+    text-decoration: none;
+    color: #fff;
+  }
+  a:hover {
+    color: grey;
+  }
+}
+
+.navbar-brand {
+  svg {
+    color: #fff;
+  }
+  svg:hover {
+    color: grey;
+  }
+}
+
+.container {
+  svg {
+    color: black;
+  }
+}
+
+.rentedOn {
+  animation: rentedOn 0.5s ease-in-out forwards;
+}
+
+.rentedOff {
+  animation: rentedOff 0.5s ease-in-out forwards;
+}
+@keyframes rentedOn {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0.25;
+  }
+}
+
+@keyframes rentedOff {
+  from {
+    opacity: 0.25;
+  }
+  to {
+    opacity: 1;
+  }
+}
