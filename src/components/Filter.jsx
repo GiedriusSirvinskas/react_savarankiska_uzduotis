@@ -24,10 +24,28 @@ function Filter({ cars, setCarList }) {
   });
 
   function filterHandler(filterObject) {
-    if (filterObject.Year === "All") {
+    if (filterObject.Year === "All" && filterObject.Origin === "All") {
       axios.get(baseURL).then((response) => setCarList(response.data));
-    } else {
+    } else if (filterObject.Year === "All" && filterObject.Origin !== "All"){
+      let {Year, Origin} = filterObject;
+      let filterParams = new URLSearchParams({Origin}).toString();
+      console.log(filterParams)
+      axios
+        .get(baseURL + "?" + filterParams)
+        .then((response) => setCarList(response.data));
+    }
+    else if (filterObject.Year !== "All" && filterObject.Origin === "All"){
+      let {Year, Origin} = filterObject;
+      // let yearSliced = Year.slice(0,4)
+      let filterParams = new URLSearchParams({Year}).toString();
+      console.log(filterParams)
+      axios
+        .get(baseURL + "?" + filterParams)
+        .then((response) => setCarList(response.data));
+    }
+    else {
       let filterParams = new URLSearchParams(filterObject).toString();
+      console.log(filterParams)
       axios
         .get(baseURL + "?" + filterParams)
         .then((response) => setCarList(response.data));
